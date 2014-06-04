@@ -4,8 +4,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class SessaoTest {
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> dc6fa041172b2c7a25214ff0694b07dcd959f0cb
 	
 	@Test
 	public void deveVender5ingressosSeHa10vagas() throws Exception {
@@ -33,12 +36,23 @@ public class SessaoTest {
 	}
 	
 	@Test
+<<<<<<< HEAD
 	public void deveReservarQuantidadeDisponivelDeIngressos(){
 		Sessao sessao = new Sessao();
 		sessao.setTotalIngressos(100);
 		Boolean podeReservar = sessao.podeReservar(100);
 		Assert.assertTrue(podeReservar);
 				
+=======
+	public void deveReservarQuantidadeTotalDisponivelDeIngressos() throws Exception {
+		
+		Sessao sessao = new Sessao();
+		sessao.setTotalIngressos(5);
+		boolean podeReservar=sessao.podeReservar(5);
+		
+		Assert.assertTrue(podeReservar);
+		
+>>>>>>> dc6fa041172b2c7a25214ff0694b07dcd959f0cb
 	}
 	
 }
