@@ -107,7 +107,14 @@ public class Sessao {
 	}
 
 	public boolean podeReservar(Integer numeroDeIngressos) {
+<<<<<<< HEAD
 		return getIngressosDisponiveis() >= numeroDeIngressos;
+=======
+		int sobraram = getIngressosDisponiveis() - numeroDeIngressos;
+        boolean naoTemEspaco = sobraram < 0;
+
+        return !naoTemEspaco;
+>>>>>>> 104164e977c1ae71aaeca2f9f92c83a1aca81042
 	}
 
 	public void setPreco(BigDecimal preco) {
