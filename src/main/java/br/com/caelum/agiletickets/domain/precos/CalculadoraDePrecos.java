@@ -8,25 +8,17 @@ import br.com.caelum.agiletickets.models.TipoDeEspetaculo;
 
 public class CalculadoraDePrecos {
 
-	public void calculo(TipoDeEspetaculo tipo1){
-		
-		
-	}
-	private static void teste(TipoDeEspetaculo tipo){
-		tipo.metodo();
-	}
+
+
 	
+	
+
 	public static BigDecimal calcula(Sessao sessao, Integer quantidade) {
 		BigDecimal preco;
 		TipoDeEspetaculo tipo = sessao.getEspetaculo().getTipo();
-	tipo.metodo();
+
 		
-/*		Map<TipoDeEspetaculo, String> mapa = null;
-		mapa.put(TipoDeEspetaculo.BALLET, "c1");
-		mapa.put(TipoDeEspetaculo.CINEMA, "c1");
-		mapa.put(TipoDeEspetaculo.ORQUESTRA, "c1");
-		mapa.put(TipoDeEspetaculo.SHOW, "c1");
-		mapa.put(TipoDeEspetaculo.TEATRO, "c1");*/
+
 		switch (tipo) {
 		case CINEMA:
 		case SHOW:
