@@ -116,7 +116,7 @@ public class Espetaculo {
 			
 			 sessao = new Sessao();
 			 sessao.setInicio(new DateTime(dataSessao.toString()));
-			// sessao.setEspetaculo(this);
+			 sessao.setEspetaculo(this);
 			 lista.add(sessao);
 			
 		}
