@@ -24,13 +24,69 @@ public class EspetaculoTest {
 		Espetaculo espetaculo = new Espetaculo();
 		
 		List<Sessao> sessoes = espetaculo.criaSessoes(inicioSessao, fimSessao, hora, periodicidade);
+		Assert.assertNotNull(sessoes);
 		Assert.assertEquals(1, sessoes.size());
 		Assert.assertEquals(espetaculo, sessoes.get(0).getEspetaculo());
-		Assert.assertEquals(inicioSessao, sessoes.get(0).getInicio());
-
-		
+		Assert.assertEquals(inicioSessao, sessoes.get(0).getInicio().toLocalDate());	
 	}
+	
+	@Test
+	public void deveCriarCincoSessoesCasoAsDatasInicioEFimTenhamDiferencaDeCincoDiasEPeriodicidadeSejaDiaria() {
+		LocalDate inicioSessao = new LocalDate(2014, 07, 20);
+		LocalDate fimSessao = new LocalDate(2014, 07, 24);
+		LocalTime hora = LocalTime.now();
+		Periodicidade periodicidade = Periodicidade.DIARIA;
+		Espetaculo espetaculo = new Espetaculo();
+		
+		List<Sessao> sessoes = espetaculo.criaSessoes(inicioSessao, fimSessao, hora, periodicidade);
+		Assert.assertNotNull(sessoes);
+		Assert.assertEquals(5, sessoes.size());
 
+	}
+	
+	@Test
+	public void deveCriarCincoSessoesCasoAsDatasInicioEFimTenhamDiferencaDeTrintaDiasEPeriodicidadeSejaSemanal() {
+		LocalDate inicioSessao = new LocalDate(2014, 7, 20);
+		LocalDate fimSessao = new LocalDate(2014, 8, 19);
+		LocalTime hora = LocalTime.now();
+		Periodicidade periodicidade = Periodicidade.SEMANAL;
+		Espetaculo espetaculo = new Espetaculo();
+		
+		List<Sessao> sessoes = espetaculo.criaSessoes(inicioSessao, fimSessao, hora, periodicidade);
+		Assert.assertNotNull(sessoes);
+		Assert.assertEquals(5, sessoes.size());
+
+	}	
+	
+	@Test
+	public void deveCriarDuasSessoesCasoAsDatasInicioEFimTenhamDiferencaDeUmaSemanaESeisDiasEPeriodicidadeSejaSemanal() {
+		LocalDate inicioSessao = new LocalDate(2014, 7, 1);
+		LocalDate fimSessao = new LocalDate(2014, 7, 14);
+		LocalTime hora = LocalTime.now();
+		Periodicidade periodicidade = Periodicidade.SEMANAL;
+		Espetaculo espetaculo = new Espetaculo();
+		
+		List<Sessao> sessoes = espetaculo.criaSessoes(inicioSessao, fimSessao, hora, periodicidade);
+		Assert.assertNotNull(sessoes);
+		Assert.assertEquals(2, sessoes.size());
+
+	}		
+	
+	@Test
+	public void naoDeveCriarSessoesCasoADataInicioSejaMenorQueADataFim() {
+		LocalDate inicioSessao = new LocalDate(2014, 7, 20);
+		LocalDate fimSessao = new LocalDate(2014, 7, 14);
+		LocalTime hora = LocalTime.now();
+		Periodicidade periodicidade = Periodicidade.SEMANAL;
+		Espetaculo espetaculo = new Espetaculo();
+		
+		List<Sessao> sessoes = espetaculo.criaSessoes(inicioSessao, fimSessao, hora, periodicidade);
+		Assert.assertNotNull(sessoes);
+		Assert.assertEquals(0, sessoes.size());
+
+	}	
+	
+	
 	@Test
 	public void deveInformarSeEhPossivelReservarAQuantidadeDeIngressosDentroDeQualquerDasSessoes() {
 		Espetaculo ivete = new Espetaculo();

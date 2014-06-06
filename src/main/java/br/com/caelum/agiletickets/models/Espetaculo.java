@@ -2,6 +2,8 @@ package br.com.caelum.agiletickets.models;
 
 import static com.google.common.collect.Lists.newArrayList;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,6 +15,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import net.sf.cglib.core.Local;
+
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 
@@ -98,9 +104,42 @@ public class Espetaculo {
      */
 	public List<Sessao> criaSessoes(LocalDate inicio, LocalDate fim, LocalTime horario, Periodicidade periodicidade) {
 		// ALUNO: Não apague esse metodo. Esse sim será usado no futuro! ;)
-		return null;
+		
+		Sessao sessao;
+	 
+		List<Sessao> lista = new ArrayList<Sessao>();
+		
+		List<LocalDate> diasDeSessao = defineDiasDeSessao(inicio, fim, periodicidade);
+		
+		for (Iterator<LocalDate> iterator = diasDeSessao.iterator(); iterator.hasNext();) {
+			LocalDate dataSessao = (LocalDate) iterator.next();
+			
+			 sessao = new Sessao();
+			 sessao.setInicio(new DateTime(dataSessao.toString()));
+			 sessao.setEspetaculo(this);
+			 lista.add(sessao);
+			
+		}
+		
+		
+		
+		return lista;
 	}
 	
+	private List<LocalDate> defineDiasDeSessao(LocalDate inicio, LocalDate fim,
+			Periodicidade periodicidade) {
+		
+		List<LocalDate> diasDeSessao = new ArrayList<LocalDate>();
+		Integer dias = Days.daysBetween(inicio, fim).getDays() + 1;
+		
+		for (int i = 0; i < dias; i = i + periodicidade.dias) {
+			LocalDate dataDaSessao = inicio.plusDays(i);
+			diasDeSessao.add(dataDaSessao);
+		}
+		
+		return diasDeSessao;
+	}
+
 	public boolean Vagas(int qtd, int min)
    {
        // ALUNO: Não apague esse metodo. Esse sim será usado no futuro! ;)
